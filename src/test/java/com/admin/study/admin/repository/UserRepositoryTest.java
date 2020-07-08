@@ -1,6 +1,7 @@
 package com.admin.study.admin.repository;
 
 import com.admin.study.admin.AdminApplicationTests;
+import com.admin.study.admin.model.entity.Item;
 import com.admin.study.admin.model.entity.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -20,8 +21,8 @@ class UserRepositoryTest extends AdminApplicationTests {
     @Test
     public void create(){
         User user = new User();
-        user.setAccount("TestUser03");
-        user.setEmail("TestUser03@gmail.com");
+        user.setAccount("TestUser05");
+        user.setEmail("TestUser04@gmail.com");
         user.setPhoneNumber("010-2222-1111");
         user.setCreatedAt(LocalDateTime.now());
         user.setCreatedBy("admin");
@@ -31,16 +32,18 @@ class UserRepositoryTest extends AdminApplicationTests {
         System.out.println("new user: " + newUser);
     }
 
+    @Transactional
     @Test
-    public User read(){
-         Optional<User> user = userRepository.findById(1L);
+    public void read(){
+         Optional<User> user = userRepository.findById(2L);
 
          user.ifPresent(selectedUser->{
-             System.out.println(selectedUser);
-             System.out.println(selectedUser.getEmail());
+            selectedUser.getOrderDetailList().stream().forEach(detail->{
+                Item item = detail.getItem();
+                System.out.println(item);
+            });
          });
 
-         return user.get();
     }
 
     @Test
