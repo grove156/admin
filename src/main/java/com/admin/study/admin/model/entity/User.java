@@ -22,9 +22,17 @@ public class User {
 
     private String account;
 
+    private String password;
+
+    private String status;
+
     private String email;
 
     private String phoneNumber;
+
+    private LocalDateTime registeredAt;
+
+    private LocalDateTime unregisteredAt;
 
     private LocalDateTime createdAt;
 
@@ -33,7 +41,7 @@ public class User {
     private LocalDateTime updatedAt;
 
     private String updatedBy;
-
+}
     //LAZY = 지연로딩, EAGER = 즉시로딩
     //LAZY = SELECT * FROM item where id = ?
     //orderDetailList를 호출 하지 않는 이상 조인 하지 않음, 나중에 호출
@@ -44,6 +52,4 @@ public class User {
     //WHERE item_id = ?
     //JOIN후 즉시 모든 것을 로딩함
     //성능저하의 문제가 있으므로 one to one 이나 many to one 관계가 아니니이상 추천하지않음음
-   @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")//"user should be the variable in OrderDetail Entity"
-    private List<OrderDetail> orderDetailList;
-}
+
