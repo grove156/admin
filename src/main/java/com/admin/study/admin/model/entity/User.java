@@ -1,8 +1,12 @@
 package com.admin.study.admin.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.Accessors;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,6 +17,10 @@ import java.util.List;
 @Data
 @Entity
 @Table(name="user") //if the table name and class name is the same, no need to declare @Table (auto changes camelCase to snake_case)
+@ToString(exclude = {"orderGroupList"})
+@EntityListeners(AuditingEntityListener.class)
+@Builder // Lombok : builder pattern
+@Accessors(chain = true)// Lombok : chain pattern
 public class User {
 
     //@Column(name="id")//if the table name and class name is the same, no need to declare @Table (auto changes camelCase to snake_case)
@@ -34,13 +42,21 @@ public class User {
 
     private LocalDateTime unregisteredAt;
 
+    @CreatedDate
     private LocalDateTime createdAt;
 
+    @CreatedBy
     private String createdBy;
 
+    @LastModifiedDate
     private LocalDateTime updatedAt;
 
+    @LastModifiedBy
     private String updatedBy;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<OrderGroup> orderGroupList;
+
 }
     //LAZY = 지연로딩, EAGER = 즉시로딩
     //LAZY = SELECT * FROM item where id = ?

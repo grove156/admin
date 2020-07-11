@@ -20,11 +20,11 @@ class UserRepositoryTest extends AdminApplicationTests {
 
     @Test
     public void create(){
-        String account = "Test01";
-        String password = "Test01";
+        String account = "Test04";
+        String password = "Test03";
         String status = "REGISTERED";
         String email = "Test01@gmail.com";
-        String phoneNumber = "010-1111-2222";
+        String phoneNumber = "010-1111-3333";
         LocalDateTime registeredAt = LocalDateTime.now();
         LocalDateTime createdAt = LocalDateTime.now();
         String createdBy = "AdminServer";
@@ -36,10 +36,14 @@ class UserRepositoryTest extends AdminApplicationTests {
         user.setEmail(email);
         user.setPhoneNumber(phoneNumber);
         user.setRegisteredAt(registeredAt);
-        user.setCreatedAt(createdAt);
-        user.setCreatedBy(createdBy);
 
         User newUser = userRepository.save(user);
+
+        User user2 = User.builder()
+                        .account(account)
+                        .password(password)
+                        .email(email)
+                        .build();
 
         Assertions.assertNotNull(newUser);
 
@@ -50,7 +54,26 @@ class UserRepositoryTest extends AdminApplicationTests {
     public void read(){
         String phoneNumber = "010-1111-2222";
         User user = userRepository.findFirstByPhoneNumberOrderByIdDesc(phoneNumber);
-        Assertions.assertNotNull(user);
+
+        user.getOrderGroupList().stream().forEach(orderGroup ->{
+            System.out.println("-------------orders-----------");
+            System.out.println("address: "+orderGroup.getRevAddress());
+            System.out.println("name: "+orderGroup.getRevName());
+            System.out.println("total price: "+orderGroup.getTotalPrice());
+            System.out.println("totla quantity: "+orderGroup.getTotalQuantity());
+            System.out.println("-------------orders detail-----------");
+
+            orderGroup.getOrderDetailList().stream().forEach(orderDetail -> {
+                System.out.println("partner name: "+orderDetail.getItem().getPartner().getName());
+                System.out.println("category: "+orderDetail.getItem().getPartner().getCategory().getTitle());
+                System.out.println("order item: "+orderDetail.getItem().getName());
+                System.out.println("call center: "+orderDetail.getItem().getPartner().getCallCenter());
+                System.out.println("order status: "+orderDetail.getStatus());
+                System.out.println("arrived at:"+orderDetail.getArrivalDate());
+            });
+        });
+
+        assertNotNull(user);
     }
 
     @Test

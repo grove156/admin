@@ -1,6 +1,7 @@
 package com.admin.study.admin.controller;
 
 import com.admin.study.admin.model.SearchParam;
+import com.admin.study.admin.model.network.Header;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -25,5 +26,12 @@ public class GetController {
     @GetMapping("/getMultiParam")
     public SearchParam getMultiParam (@RequestParam SearchParam searchParam){
         return searchParam;
+    }
+
+    @GetMapping("/header")
+    public Header getHeader(){
+
+        //{"resultCode" : "OK", "description" : "OK"}
+        return Header.builder().resultCode("OK").description("OK").build();
     }
 }

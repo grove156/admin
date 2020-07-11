@@ -1,10 +1,13 @@
 package com.admin.study.admin.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
+import lombok.experimental.Accessors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -16,6 +19,10 @@ import java.util.List;
 @Table(name = "item")
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(exclude = {"partner","orderDetailList"})
+@EntityListeners(AuditingEntityListener.class)
+@Builder // Lombok : builder pattern
+@Accessors(chain = true)// Lombok : chain pattern
 public class Item {
 
     @Id
@@ -38,14 +45,23 @@ public class Item {
 
     private LocalDateTime unregisteredAt;
 
+    @CreatedDate
     private LocalDateTime createdAt;
 
+    @CreatedBy
     private String createdBy;
 
+    @LastModifiedDate
     private LocalDateTime updatedAt;
 
-    private String updatedBy;
+    @LastModifiedBy
+    private String updatedBy;;
 
-    private Long partnerId;
+    @ManyToOne
+    private Partner partner;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
+    private List<OrderDetail> orderDetailList;
+
 
 }
