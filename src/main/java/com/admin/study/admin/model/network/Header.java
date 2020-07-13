@@ -13,11 +13,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Accessors(chain= true)
 public class Header<T> {
 
     //api 통신 시간
-    @JsonProperty("tansaction_time") //제이슨의 프로퍼티 네임을 설정해줌
+    //@JsonProperty("tansaction_time") 제이슨의 프로퍼티 네임을 설정해줌
     private LocalDateTime transactionTime;
 
     //api 통신 코드

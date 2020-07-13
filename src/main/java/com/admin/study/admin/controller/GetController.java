@@ -34,4 +34,5 @@ public class GetController {
         //{"resultCode" : "OK", "description" : "OK"}
         return Header.builder().resultCode("OK").description("OK").build();
     }
+
 }
