@@ -2,6 +2,7 @@ package com.admin.study.admin.service;
 
 import com.admin.study.admin.ifs.CrudInterface;
 import com.admin.study.admin.model.entity.OrderGroup;
+import com.admin.study.admin.model.enumclass.OrderType;
 import com.admin.study.admin.model.network.Header;
 import com.admin.study.admin.model.network.request.OrderGroupApiRequest;
 import com.admin.study.admin.model.network.response.OrderGroupApiResponse;
@@ -26,10 +27,10 @@ public class OrderGroupApiLogicService implements CrudInterface<OrderGroupApiReq
 
         OrderGroup orderGroup = OrderGroup.builder()
                 .status(body.getStatus())
-                .orderType(body.getOrderType())
+                .orderType(OrderType.ALL)
                 .revAddress(body.getRevAddress())
                 .revName(body.getRevName())
-                .paymentType(body.getOrderType())
+                .paymentType(body.getPaymentType())
                 .totalPrice(body.getTotalPrice())
                 .totalQuantity(body.getTotalQuantity())
                 .orderAt(LocalDateTime.now())
@@ -56,7 +57,7 @@ public class OrderGroupApiLogicService implements CrudInterface<OrderGroupApiReq
                                 .setOrderType(body.getOrderType())
                                 .setRevAddress(body.getRevAddress())
                                 .setRevName(body.getRevName())
-                                .setPaymentType(body.getPaymentMethod())
+                                .setPaymentType(body.getPaymentType())
                                 .setTotalQuantity(body.getTotalQuantity())
                                 .setTotalPrice(body.getTotalPrice())
                                 .setTotalQuantity(body.getTotalQuantity())

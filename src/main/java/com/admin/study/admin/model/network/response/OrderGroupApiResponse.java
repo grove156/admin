@@ -1,5 +1,6 @@
 package com.admin.study.admin.model.network.response;
 
+import com.admin.study.admin.model.enumclass.OrderType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,7 +19,7 @@ public class OrderGroupApiResponse {
 
     private String status;
 
-    private String orderType;
+    private OrderType orderType;
 
     private String revAddress;
 

@@ -1,5 +1,6 @@
 package com.admin.study.admin.model.network.request;
 
+import com.admin.study.admin.model.enumclass.OrderType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,13 +19,13 @@ public class OrderGroupApiRequest {
 
     private String status;
 
-    private String orderType;
+    private OrderType orderType;
 
     private String revAddress;
 
     private String revName;
 
-    private String paymentMethod;
+    private String paymentType;
 
     private BigDecimal totalPrice;
 
