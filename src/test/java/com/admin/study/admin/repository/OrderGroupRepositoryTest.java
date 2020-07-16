@@ -2,6 +2,7 @@ package com.admin.study.admin.repository;
 
 import com.admin.study.admin.AdminApplicationTests;
 import com.admin.study.admin.model.entity.OrderGroup;
+import com.admin.study.admin.model.enumclass.OrderType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ class OrderGroupRepositoryTest extends AdminApplicationTests {
     public void create(){
         OrderGroup orderGroup = new OrderGroup();
         orderGroup.setStatus("COMPLETE");
-        orderGroup.setOrderType("ALL");
+        orderGroup.setOrderType(OrderType.valueOf("ALL"));
         orderGroup.setRevAddress("Seoul Gangnam");
         orderGroup.setRevName("Myeongkeun");
         orderGroup.setPaymentType("CARD");

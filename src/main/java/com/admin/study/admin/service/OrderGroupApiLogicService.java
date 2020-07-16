@@ -82,7 +82,7 @@ public class OrderGroupApiLogicService implements CrudInterface<OrderGroupApiReq
                 .orElseGet(()->Header.Error("NO DATA"));
     }
 
-    private Header<OrderGroupApiResponse> response(OrderGroup orderGroup){
+    public Header<OrderGroupApiResponse> response(OrderGroup orderGroup){
         OrderGroupApiResponse body = OrderGroupApiResponse.builder()
                 .id(orderGroup.getId())
                 .status(orderGroup.getStatus())

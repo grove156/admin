@@ -3,6 +3,7 @@ package com.admin.study.admin.repository;
 import com.admin.study.admin.AdminApplicationTests;
 import com.admin.study.admin.model.entity.Item;
 import com.admin.study.admin.model.entity.User;
+import com.admin.study.admin.model.enumclass.UserStatus;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ class UserRepositoryTest extends AdminApplicationTests {
     public void create(){
         String account = "Test04";
         String password = "Test03";
-        String status = "REGISTERED";
+        UserStatus status = UserStatus.valueOf("REGISTERED");
         String email = "Test01@gmail.com";
         String phoneNumber = "010-1111-3333";
         LocalDateTime registeredAt = LocalDateTime.now();

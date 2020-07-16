@@ -46,7 +46,7 @@ public class OrderGroup {
 
     private LocalDateTime orderAt;
 
-    private LocalDateTime ArrivalDate;
+    private LocalDateTime arrivalDate;
 
     @CreatedDate
     private LocalDateTime createdAt;
